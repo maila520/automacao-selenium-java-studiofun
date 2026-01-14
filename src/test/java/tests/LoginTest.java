@@ -16,4 +16,46 @@ public class LoginTest extends BaseTest {
                 "Login falhou: usúario não foi redirecionado"
         );
     }
+    @Test
+    public void  shoulNotLoginWhitInvalidEmail(){
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.fillEmail("mailasantos@gmail.com");
+        loginPage.fillPassword("123490956");
+        loginPage.clickLogin();
+
+        String errorMessage = loginPage.getErrorMessage();
+        Assertions.assertTrue(
+                errorMessage.toLowerCase().contains("inválido") ||
+                        errorMessage.toLowerCase().contains("incorreto"));
+    }
+
+    @Test
+    public void shoulNotLoginWithWrongPassword(){
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.fillEmail("mailasantos@gmail.com");
+        loginPage.fillPassword("1jvnbvub");
+        loginPage.clickLogin();
+
+        String errorMessage = loginPage.getErrorMessage();
+        Assertions.assertTrue(errorMessage.contains("senha"));
+    }
+
+    @Test
+    public void shouldNotLoginWithValidEmailAndInvalidPassword(){
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.fillEmail("mailasantos520@gmail.com");
+        loginPage.fillPassword("senhafuhfewu");
+        loginPage.clickLogin();
+
+        String alertMessage = loginPage.getErrorMessage();
+
+        Assertions.assertFalse(
+                alertMessage.isEmpty(),
+                "Menssagem de alerta não foi exibida para senha invalida"
+        );
+    }
+
 }

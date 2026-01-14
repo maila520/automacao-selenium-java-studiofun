@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
@@ -35,5 +36,29 @@ public class LoginPage {
         linkEsqueciSenha.click();
     }
 
+    private By emailInput = By.id("email");
+    private By passwordInput = By.id("password");
+    private By loginButton = By.cssSelector("button[type='submit']");
+    private By errorMessage = By.cssSelector(".alert-danger");
+
+    public  void fillEmail (String email) {
+        driver.findElement(emailInput).clear();
+        driver.findElement(emailInput).sendKeys(email);
+    }
+    public void fillPassword (String password) {
+        driver.findElement(passwordInput).clear();
+        driver.findElement(passwordInput).sendKeys(password);
+    }
+
+    public void clickLogin(){
+        driver.findElement(loginButton).click();
+    }
+
+    public String getErrorMessage() {
+        return driver.findElement(errorMessage).getText();
+    }
+
 
 }
+
+
