@@ -46,6 +46,15 @@ Este projeto tem como objetivo validar as principais funcionalidades do sistema 
 **Então** o sistema deve exibir uma mensagem de alerta informando que o e-mail ou a senha são inválidos
 
 ---
+### 🔹 Cenário 5: Criando um novo aluno
+
+**Dado** que o usuário já tenha logado com email e senha cadastrados  
+**E** clica na opção do menu lateral no campo alunos  
+**E** clica em Novo aluno  
+**Quando** preenche todas as informações do formulario no modal    
+**Então** salva todas as informações cadastradas com sucesso 
+
+---
 
 ## 🛠️ Tecnologias Utilizadas
 
